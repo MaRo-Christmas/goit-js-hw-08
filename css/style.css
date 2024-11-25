@@ -3,13 +3,13 @@
 }
 
 body {
-  margin: 16px;
+  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #fafafa;
-  color: #212121;
+  color: 2e2F42;
   line-height: 1.5;
 }
 
@@ -17,52 +17,93 @@ ul,
 ol {
   list-style-type: none;
   padding: 0;
+  margin: 0;
 }
 
 img {
   display: block;
-  height: 100%;
+  height: auto;
+  max-width: 100%;
 }
 
 .gallery {
-  display: flex;
-  width: 1128px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  flex-wrap: wrap;
+  padding: 24px;
+  max-width: 1440px;
   margin: 0 auto;
 }
 
 .gallery-item {
-  transition: transform 0.5s;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
 .gallery-item:hover {
-  position: relative;
   transform: scale(1.05);
-}
-
-.basicLightbox__placeholder h2 {
-  color: #fafafa;
-  text-align: center;
 }
 
 .btn-modal {
   position: absolute;
-  top: 24px;
-  right: 24px;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background-color: var(#fafafa);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
   cursor: pointer;
-  transition: transform 0.5s;
-}
-.btn-modal:hover {
-  transform: scale(1.2);
+  padding: 10px;
 }
 
-.gallery-link {
-  cursor: url('../bxs_hand-down.svg'), pointer;
+.btn-modal img {
+  width: 24px;
+  height: 24px;
+}
+
+.btn-modal.prev {
+  left: -16px;
+}
+
+.btn-modal.next {
+  right: -16px;
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 124px;
+}
+
+.modal-image {
+  max-width: 100%;
+  max-height: 80vh;
+}
+
+.close-modal {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.close-modal img {
+  width: 100%;
+  height: auto;
+}
+
+.close-modal:hover img {
+  filter: brightness(0.8);
+}
+
+.image-counter {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  color: #ffffff;
+  font-size: 16px;
 }
