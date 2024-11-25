@@ -1,0 +1,68 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fafafa;
+  color: #212121;
+  line-height: 1.5;
+}
+
+ul,
+ol {
+  list-style-type: none;
+  padding: 0;
+}
+
+img {
+  display: block;
+  height: 100%;
+}
+
+.gallery {
+  display: flex;
+  width: 1128px;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.gallery-item {
+  transition: transform 0.5s;
+}
+
+.gallery-item:hover {
+  position: relative;
+  transform: scale(1.05);
+}
+
+.basicLightbox__placeholder h2 {
+  color: #fafafa;
+  text-align: center;
+}
+
+.btn-modal {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(#fafafa);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.5s;
+}
+.btn-modal:hover {
+  transform: scale(1.2);
+}
+
+.gallery-link {
+  cursor: url('../bxs_hand-down.svg'), pointer;
+}

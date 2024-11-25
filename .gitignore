@@ -1,0 +1,45 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.pnpm-debug.log*
+
+# Logs
+logs
+*.log
+logs/*.log
+
+# Бази даних
+*.sqlite
+*.db
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# IDEs та редактори
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Екземпляри тестів
+coverage/
+*.lcov
+
+# Вихідні каталоги (Build)
+dist/
+build/
+out/
+
+# Конфігурації середовища
+.env
+.env.*local
+
+# Типові тимчасові файли
+*.tmp
+*.swp
