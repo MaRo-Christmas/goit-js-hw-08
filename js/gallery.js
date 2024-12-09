@@ -72,8 +72,17 @@ document.addEventListener('DOMContentLoaded', function () {
     .map(
       (image, index) =>
         `<li class="gallery-item">
-      <img src="${image.original}" alt="${image.description}" data-index="${index}" class="gallery-image">
-    </li>`
+  <a class="gallery-link" href="${image.original}">
+    <img
+      class="gallery-image"
+      src="${image.preview}"
+      data-source="${image.original}"
+      data-index="${index}"
+      alt="${image.description}"
+    />
+  </a>
+</li>
+`
     )
     .join('')
 
@@ -81,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   gallery.addEventListener('click', (event) => {
     if (event.target.classList.contains('gallery-image')) {
-      openModal(event.target.dataset.index)
+      openModal(+event.target.dataset.index)
     }
   })
 
@@ -90,7 +99,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function openModal(index) {
     currentIndex = index
-    const { original, description } = images[currentIndex]
+    const imagesInDOM = Array.from(document.querySelectorAll('.gallery-image'))
+    const image = imagesInDOM[currentIndex]
+    const original = image.dataset.source
+    const description = image.alt
 
     instance = basicLightbox.create(
       `
@@ -113,11 +125,11 @@ document.addEventListener('DOMContentLoaded', function () {
           instance
             .element()
             .querySelector('.prev')
-            .addEventListener('click', () => showImage(-1))
+            .addEventListener('click', () => showImage(-1, imagesInDOM))
           instance
             .element()
             .querySelector('.next')
-            .addEventListener('click', () => showImage(1))
+            .addEventListener('click', () => showImage(1, imagesInDOM))
           instance
             .element()
             .querySelector('.close-modal')
@@ -132,16 +144,21 @@ document.addEventListener('DOMContentLoaded', function () {
     instance.show()
   }
 
-  function showImage(direction) {
-    currentIndex = (currentIndex + direction + images.length) % images.length
-    const { original, description } = images[currentIndex]
+  function showImage(direction, imagesInDOM) {
+    currentIndex =
+      (currentIndex + direction + imagesInDOM.length) % imagesInDOM.length
+    const image = imagesInDOM[currentIndex]
+    const original = image.dataset.source
+    const description = image.alt
+
     instance.element().querySelector('.modal-image').src = original
     instance.element().querySelector('.modal-image').alt = description
   }
 
   function onKeyDown(event) {
-    if (event.key === 'ArrowLeft') showImage(-1)
-    if (event.key === 'ArrowRight') showImage(1)
+    const imagesInDOM = Array.from(document.querySelectorAll('.gallery-image')) // Отримуємо всі зображення з DOM
+    if (event.key === 'ArrowLeft') showImage(-1, imagesInDOM)
+    if (event.key === 'ArrowRight') showImage(1, imagesInDOM)
     if (event.key === 'Escape') instance.close()
   }
 })
