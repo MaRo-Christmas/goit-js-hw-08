@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function onKeyDown(event) {
-    const imagesInDOM = Array.from(document.querySelectorAll('.gallery-image')) // Отримуємо всі зображення з DOM
+    const imagesInDOM = Array.from(document.querySelectorAll('.gallery-image'))
     if (event.key === 'ArrowLeft') showImage(-1, imagesInDOM)
     if (event.key === 'ArrowRight') showImage(1, imagesInDOM)
     if (event.key === 'Escape') instance.close()
